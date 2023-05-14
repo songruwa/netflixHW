@@ -5,8 +5,7 @@ import { MovieDetail } from '../../../movie-detail.interface';
 import { MatDialog } from '@angular/material/dialog'; 
 import { Video } from '../video.interface';
 import { Movie } from 'src/app/movie.interface';
-
-
+import { YoutubeComponent } from '../youtube/youtube.component';
 
 
 @Component({
@@ -30,28 +29,29 @@ export class MovieDetailComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.movieId = +params['id'];
       this.movieService.getMovieDetail(this.movieId).subscribe(movie => {
-        console.log(this.movieId);
         this.moviedetail = movie;
         this.movie = movie;
       });
     });
   }
 
-  // openDialog(): void { // Add openDialog method
-  //   const dialogRef = this.dialog.open(YoutubeComponent, {
-  //     data: {
-  //       movieVideos: this.movieVideos, 
-  //       hasposter_img: this.hasPoster_img, 
-  //       hasbackdrop_img: this.hasBackdrop_img,
-  //       poster_img_high: this.poster_img_high, 
-  //       backdrop_img_high: this.backdrop_img_high,
-  //     },
-  //     backdropClass: 'backdropBackground',
-  //     panelClass: 'my-panel',
-  //   });
+  // https://www.nerd.vision/post/how-to-pass-data-to-a-matdialog
+  openDialog(): void { // Add openDialog method
+    const dialogRef = this.dialog.open(YoutubeComponent, {
+      data: {
+        movieId: this.movieId,
+        movieVideos: this.movieVideos, 
+        hasposter_img: this.hasPoster_img, 
+        hasbackdrop_img: this.hasBackdrop_img,
+        poster_img_high: this.poster_img_high, 
+        backdrop_img_high: this.backdrop_img_high,
+      },
+      backdropClass: 'backdropBackground',
+      panelClass: 'my-panel',
+    });
 
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log('The dialog was closed', result);
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+    });
+  }
 }

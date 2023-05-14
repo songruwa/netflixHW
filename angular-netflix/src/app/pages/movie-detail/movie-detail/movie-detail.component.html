@@ -10,11 +10,8 @@
         <p>Home Page <a [href]="moviedetail.homepage" target="_blank">{{moviedetail.homepage}}</a></p>
         <mat-card-actions>
             <button mat-stroked-button color="" class="btn-detail">LIKE</button>
-            <button mat-stroked-button color="" class="btn-detail">TRAILER</button>
+            <button mat-stroked-button color="" class="btn-detail" (click)="openDialog()">TRAILER</button>
         </mat-card-actions>
         <h4 class="rating">RATING: {{ moviedetail.vote_average }}</h4>
     </mat-card-content>
 </mat-card>
-
-
-<!-- (click)="openDialog()" -->
